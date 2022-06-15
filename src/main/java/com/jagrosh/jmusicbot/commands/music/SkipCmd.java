@@ -43,7 +43,7 @@ public class SkipCmd extends MusicCommand
     {
         AudioHandler handler = (AudioHandler)event.getGuild().getAudioManager().getSendingHandler();
         RequestMetadata rm = handler.getRequestMetadata();
-        if(event.getAuthor().getIdLong() == rm.getOwner())
+        if(bot.getConfig().useNoSkipVoting() || event.getAuthor().getIdLong() == rm.getOwner())
         {
             event.reply(event.getClient().getSuccess()+" Skipped **"+handler.getPlayer().getPlayingTrack().getInfo().title+"**");
             handler.getPlayer().stopTrack();
